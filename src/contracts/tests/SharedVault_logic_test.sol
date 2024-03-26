@@ -3,7 +3,7 @@
 pragma solidity >=0.7.0 <0.9.0;
 import "remix_tests.sol"; // this import is automatically injected by Remix.
 import "hardhat/console.sol";
-import { SharedVault } from "../contracts/SharedVault.sol";
+import { SharedVault } from "../SharedVault.sol";
 
 
 contract SharedVault_Logic_Test {
