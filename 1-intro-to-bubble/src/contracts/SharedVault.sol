@@ -5,31 +5,15 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 import "https://github.com/Bubble-Protocol/bubble-sdk/blob/main/contracts/AccessControlledStorage.sol";
 import "https://github.com/Bubble-Protocol/bubble-sdk/blob/main/contracts/AccessControlBits.sol";
 
-
-/**
- * DApp smart contract for use in the 'Introduction To Bubble Protocol' workshop series.
- *
- * The goal of the workshop series is to build step-by-step a working file vault dapp that lets
- * members of the vault share files and communicate via an end-to-end encrypted multi-user 
- * bubble.  
- * 
- * This is the version for workshop 1, which does not yet support multi-user encryption.
- *
- * This contract contains both the on-chain logic for a shared vault and the off-chain bubble
- * permissions.  It could instead be split into two contracts, one with the dapp logic and the
- * other with the bubble permissions.
- */
-
 contract SharedVault is AccessControl, AccessControlledStorage {
 
     bool public terminated = false;
     mapping (address => bool) members;
 
-
-    constructor(address ownerLogin) {
+    constructor(address login) {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _grantRole(DEFAULT_ADMIN_ROLE, ownerLogin);
-        members[ownerLogin] = true;
+        _grantRole(DEFAULT_ADMIN_ROLE, login);
+        members[login] = true;
     }
 
 
@@ -58,7 +42,6 @@ contract SharedVault is AccessControl, AccessControlledStorage {
         }
     }
 
-
     /**
      * Terminates the vault causing the off-chain bubble to be deleted
      */
@@ -74,28 +57,29 @@ contract SharedVault is AccessControl, AccessControlledStorage {
      */
     function getAccessPermissions( address user, uint256 contentId ) override external view returns (uint256) {
 
-        // If the bubble has been terminated, the off-chain storage service will delete the bubble
+        /**
+         * If the bubble has been terminated, the off-chain storage service will delete the bubble and 
+         * all its contents.
+         */
         if (terminated) return BUBBLE_TERMINATED_BIT;
 
-        if (isMember(user)) {
+        else if (members[user]) {
 
             // Root of bubble (admin: rw, members: r)
             if (contentId == ROOT) return isAdmin(user) ? READ_BIT | WRITE_BIT : READ_BIT;
 
             // Metadata File (admin: rw, members: r)
-            else if (contentId == METADATA_FILE) return isAdmin(user) ? READ_BIT | WRITE_BIT : READ_BIT;
+            if (contentId == METADATA_FILE) return isAdmin(user) ? READ_BIT | WRITE_BIT : READ_BIT;
 
             // Shared file directory (all: drw)
-            else if (contentId == SHARED_FILE_DIR) return DIRECTORY_BIT | READ_BIT | WRITE_BIT;
+            if (contentId == SHARED_FILE_DIR) return DIRECTORY_BIT | READ_BIT | WRITE_BIT;
 
             // Messaging directory (all: dra)
-            else if (contentId == MESSAGING_DIR) return DIRECTORY_BIT | READ_BIT | APPEND_BIT;
+            if (contentId == MESSAGING_DIR) return DIRECTORY_BIT | READ_BIT | APPEND_BIT;
 
         }
 
-        // Default permissions
-        return NO_PERMISSIONS;
-
+        else return NO_PERMISSIONS;
     }
 
 }
