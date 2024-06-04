@@ -79,7 +79,7 @@ contract SharedVault is AccessControl, AccessControlledStorage {
 
         }
 
-        else return NO_PERMISSIONS;
+        return NO_PERMISSIONS;
     }
 
 }
