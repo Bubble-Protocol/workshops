@@ -94,13 +94,12 @@ export class Session extends LoginSession {
       this.vaults.push(vault);
       this._saveState();
       this._dispatchUIData();
-      return vault;
     }
     if (vault.isFailed()) throw vault.error;
   }
 
   async loadVault(vault) {
-    if (vault.isInitialised()) return vault;
+    if (vault.isInitialised()) return;
     await vault.initialise(this.loginKey.address, this.loginKey.signFunction);
     this._saveState();
   }
