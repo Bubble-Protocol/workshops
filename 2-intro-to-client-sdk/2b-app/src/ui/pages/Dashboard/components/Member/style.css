@@ -1,0 +1,41 @@
+.member {
+  flex: 1;
+  align-self: stretch;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+  position: relative;
+  padding: 2px 4px;
+  border-radius: 4px;
+  min-height: 32px;
+}
+
+.member:hover {
+  cursor: pointer;
+}
+
+.member .name {
+  color: #000;
+  flex: 1;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: normal;
+  border: none;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.member .icon-frame {
+  height: 28px;
+  width: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

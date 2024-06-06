@@ -1,0 +1,44 @@
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  width: auto;
+}
+
+.file-list .add-file {
+  color: var(--cta-color);
+  font-size: 32px;
+}
+
+.file-list .add-file:hover {
+  cursor: pointer;
+}
+
+.bubble-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: auto;
+}
+
+.bubble-details-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: auto;
+  border: 1px solid var(--cta-color);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.bubble-details td {
+  text-align: left;
+  padding: 0 4px;
+}
+
+.bubble-details code {
+  font-size: 14px;
+}

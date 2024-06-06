@@ -1,0 +1,17 @@
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  overflow: hidden;
+  width: auto;
+}
+
+.member-list .add-member-button {
+  color: var(--cta-color);
+  font-size: 40px;
+}
+
+.member-list .add-member-button:hover {
+  cursor: pointer;
+}

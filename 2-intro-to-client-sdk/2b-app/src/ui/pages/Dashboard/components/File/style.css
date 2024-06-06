@@ -1,0 +1,84 @@
+.file {
+  flex: 1;
+  align-self: stretch;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  position: relative;
+  padding: 2px 4px;
+  border-radius: 4px;
+  height: 60px;
+}
+
+.file:hover {
+  background-color: rgba(210, 209, 209, 0.3);
+}
+
+.file .display-on-hover {
+  opacity: 0;
+}
+
+.file:hover .display-on-hover {
+  opacity: 1;
+}
+
+.file .name {
+  color: #333;
+  flex: 1;
+  font-family: "Arial-Regular", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+  height: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: normal;
+  border: none;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file .name:hover, .file .icon, .file.error-icon {
+  cursor: pointer;
+}
+
+.file .icon, .file .error-icon {
+  flex: 0;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  flex: 0;
+}
+
+.file .tooltip {
+  display: none;
+  padding: 2px 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fee1e1;
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  max-width: 300px;
+  overflow: hidden;
+  overflow-wrap: normal;
+  line-height: normal;
+  text-align: left;
+  z-index: 1;
+}
+
+.file .error-icon:hover + .tooltip {
+  display: block;
+}
+
+.file .loader-small {
+  width: 20px;
+  height: 20px;
+}
+
+.file a {
+  text-decoration: none;
+}

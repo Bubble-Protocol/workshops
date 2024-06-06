@@ -1,0 +1,16 @@
+{
+  "name": "2a-bubble-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@bubble-protocol/client": "^0.2.3",
+    "@bubble-protocol/core": "^0.0.13",
+    "@bubble-protocol/crypto": "^0.0.7"
+  }
+}
